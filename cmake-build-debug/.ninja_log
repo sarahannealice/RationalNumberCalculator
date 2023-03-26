@@ -1,0 +1,14 @@
+# ninja log v5
+0	291	7014929272302485	CMakeFiles/RationalNumberCalculator.dir/src/rational.cpp.obj	e66f21c8e517a4b2
+4	293	7014929272312444	CMakeFiles/RationalNumberCalculator.dir/src/main.cpp.obj	65231211c18a8d11
+293	370	7014929273070418	RationalNumberCalculator.exe	730887fbe8a2220e
+2	284	7014931508851038	CMakeFiles/RationalNumberCalculator.dir/src/main.cpp.obj	65231211c18a8d11
+284	358	7014931509559136	RationalNumberCalculator.exe	730887fbe8a2220e
+2	277	7014932123585927	CMakeFiles/RationalNumberCalculator.dir/src/main.cpp.obj	65231211c18a8d11
+277	346	7014932124254144	RationalNumberCalculator.exe	730887fbe8a2220e
+2	284	7014932416940825	CMakeFiles/RationalNumberCalculator.dir/src/main.cpp.obj	65231211c18a8d11
+284	352	7014932417599065	RationalNumberCalculator.exe	730887fbe8a2220e
+2	284	7014932546862619	CMakeFiles/RationalNumberCalculator.dir/src/main.cpp.obj	65231211c18a8d11
+284	355	7014932547550770	RationalNumberCalculator.exe	730887fbe8a2220e
+2	292	7014932897724058	CMakeFiles/RationalNumberCalculator.dir/src/main.cpp.obj	65231211c18a8d11
+292	366	7014932898442138	RationalNumberCalculator.exe	730887fbe8a2220e
