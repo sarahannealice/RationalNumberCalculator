@@ -3,25 +3,31 @@
 //
 #include <iostream>
 
+#include "../inc/rational.h"
+
 using namespace std;
 
 int main() {
-    string firstNum;
-    string secNum;
+    string input;
     int cont;
     bool loopProgram = true;
 
     while (loopProgram) {
         //taking user input
         cout << "enter a rational number: ";
-        cin >> firstNum;
+        cin >> input;
+        Rational rn1(input);
 
         cout << "enter a second rational number: ";
-        cin >> secNum;
+        cin >> input;
+        Rational rn2(input);
 
-        cout << "first: " << firstNum << endl;
-        cout << "second: " << secNum << endl;
+        cout << "your inputted values were [1]" << rn1 << " [2]" << rn2 << endl;
 
+        cout << "math operations overloaded demonstration" << endl;
+
+
+        //end of loop question
         cout << "\nwould you like to continue? [1]yes [3]no" << endl;
         cin >> cont;
 
