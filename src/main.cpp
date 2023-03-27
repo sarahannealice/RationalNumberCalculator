@@ -1,7 +1,6 @@
 //
 // Created by sarah on 25/03/2023.
 //
-#include <iostream>
 
 #include "../inc/rational.h"
 

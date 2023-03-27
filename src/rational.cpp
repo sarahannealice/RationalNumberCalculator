@@ -1,8 +1,6 @@
 //
 // Created by sarah on 25/03/2023.
 //
-#include <iostream>
-#include <string>
 
 #include "../inc/rational.h"
 
@@ -46,6 +44,26 @@ denominator = 1;
 Rational::~Rational() {
     cout << "---destructor called---" << endl;
 }
+
+//string parsing method -- https://stackoverflow.com/a/46931770
+int *Rational::getFraction(const string& input) {
+    static int fraction[2];
+    stringstream stream(input);
+    char delimiter = '/';
+    string token;
+
+    while (getline(stream, token, delimiter)) {
+        for (int i = 0; i < sizeof(fraction); i++) {
+            fraction[i] = stoi(token);
+        }
+    }
+
+    return fraction;
+}
+
+//----------math functions----------//
+
+
 
 
 
