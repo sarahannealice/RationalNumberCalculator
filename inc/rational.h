@@ -8,6 +8,8 @@
 #include <string>
 #include <sstream>
 #include <iostream>
+#include <regex>
+
 using namespace std;
 
 class Rational {
@@ -29,7 +31,6 @@ public:
     //string parser -- returning array instead of vector (takes less memory/more efficient)
     //https://www.tutorialspoint.com/difference-between-std-vector-and-std-array-in-cplusplus
     static int * getFraction(const string& input);
-
 
     //overloaded math operators
 
