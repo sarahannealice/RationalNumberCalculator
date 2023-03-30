@@ -51,6 +51,9 @@ int main() {
         cout << "\ndemonstrating math operations overloaded" << endl;
 
         cout << rn1 << " + " << rn2 << " = " << endl << rn1 + rn2 << endl;
+        cout << rn1 << " - " << rn2 << " = " << endl << rn1 - rn2 << endl;
+        cout << rn1 << " * " << rn2 << " = " << endl << rn1 * rn2 << endl;
+        cout << rn1 << " / " << rn2 << " = " << endl << rn1 / rn2 << endl;
 
         //end of loop question
         cout << "\nwould you like to continue? [1]yes [3]no" << endl;

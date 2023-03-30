@@ -119,7 +119,7 @@ Rational Rational::operator-(Rational &rn) const {
     answer.denominator = this->denominator * rn.denominator;
 
     //send to be reduced
-
+    reduceFraction(answer);
 
     return answer;
 }
@@ -131,7 +131,7 @@ Rational Rational::operator*(Rational &rn) const {
     answer.denominator = this->denominator * rn.denominator;
 
     //send to be reduced
-
+    reduceFraction(answer);
 
     return answer;
 }
@@ -143,7 +143,7 @@ Rational Rational::operator/(Rational &rn) const {
     answer.denominator = this->denominator * rn.numerator;
 
     //send to be reduced
-
+    reduceFraction(answer);
 
     return answer;
 }
