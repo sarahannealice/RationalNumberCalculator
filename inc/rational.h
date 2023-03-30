@@ -6,7 +6,7 @@
 #define RATIONALNUMBERCALCULATOR_RATIONAL_H
 
 #include <string>
-#include <sstream>//used for stringstream parsing
+#include <sstream>//used for string stream parsing
 #include <iostream>
 #include <regex>
 
@@ -14,7 +14,7 @@ using namespace std;
 
 class Rational {
 
-public:
+private:
     int numerator;
     int denominator;
 
@@ -22,8 +22,8 @@ public:
     //constructors
     Rational();
     explicit Rational(int num);
-    Rational(int num, int denom);
-    explicit Rational(string number);
+    Rational(int num, int den);
+    explicit Rational(const string& number);
 
     //destructor
     ~Rational();
@@ -41,9 +41,9 @@ public:
     Rational operator/(Rational& rn) const;
 
     //overloaded comparison operators
-    bool operator>(Rational& rn);
-    bool operator<(Rational& rn);
-    bool operator==(Rational& rn);
+    bool operator>(Rational& rn) const;
+    bool operator<(Rational& rn) const;
+    bool operator==(Rational& rn) const;
 
     //friend function
     friend ostream& operator<<(ostream& stream, const Rational &rn);

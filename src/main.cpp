@@ -9,6 +9,7 @@ using namespace std;
 int main() {
     string input;
     string cont;
+    string temp;
     bool loopProgram = true;
     bool  invalid = true;
     //number-fraction regex
@@ -50,10 +51,34 @@ int main() {
         cout << "your inputted values were " << rn1 << " & " << rn2 << endl;
         cout << "\ndemonstrating math operations overloaded" << endl;
 
-        cout << rn1 << " + " << rn2 << " = " << endl << rn1 + rn2 << endl;
-        cout << rn1 << " - " << rn2 << " = " << endl << rn1 - rn2 << endl;
-        cout << rn1 << " * " << rn2 << " = " << endl << rn1 * rn2 << endl;
-        cout << rn1 << " / " << rn2 << " = " << endl << rn1 / rn2 << endl;
+        cout << endl << rn1 << " + " << rn2 << " = " << endl << rn1 + rn2 << endl;
+        cout << endl << rn1 << " - " << rn2 << " = " << endl << rn1 - rn2 << endl;
+        cout << endl << rn1 << " * " << rn2 << " = " << endl << rn1 * rn2 << endl;
+        cout << endl << rn1 << " / " << rn2 << " = " << endl << rn1 / rn2 << endl;
+
+
+        cout << "\ndemonstrating comparison operator overloads" << endl;
+        cout << rn1 << " > " << rn2 << " -> ";
+
+        if ((rn1 > rn2) == 1) {
+            cout << "true" << endl;
+        } else if ((rn1 > rn2) == 0){
+            cout << "false" << endl;
+        }
+
+        cout << rn1 << " < " << rn2 << " -> ";
+        if ((rn1 < rn2) == 1) {
+            cout << "true" << endl;
+        } else if ((rn1 < rn2) == 0) {
+            cout << "false" << endl;
+        }
+
+        cout << rn1 << " == " << rn2 << " -> ";
+        if ((rn1 == rn2) == 1) {
+            cout << "true" << endl;
+        } else if ((rn1 == rn2) == 0) {
+            cout << "false" << endl;
+        }
 
         //end of loop question
         cout << "\nwould you like to continue? [1]yes [3]no" << endl;

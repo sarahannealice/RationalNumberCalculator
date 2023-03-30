@@ -24,26 +24,24 @@ Rational::Rational(int num) {
 }
 
 //two arg constructor
-Rational::Rational(int num, int denom) {
+Rational::Rational(int num, int den) {
     cout << "---two argument constructor called---" << endl;
 
     numerator = num;
-    denominator = denom;
+    denominator = den;
 }
 
 //string constructor
-Rational::Rational(string number) {
+Rational::Rational(const string& number) {
     cout << "---string constructor called---" << endl;
     vector<int> fraction;
 
     //to see if rational or not -- https://stackoverflow.com/a/43629706
     if (number.find('/') != string::npos) {//check if string contains '/' (no substring found = npos)
-        //copying 2 arrays -- https://stackoverflow.com/a/16137997
         fraction = getFraction(number);
 
         numerator = fraction[0];
         denominator = fraction[1];
-
     } else {
         numerator = stoi(number);
         denominator = 1;
@@ -67,8 +65,9 @@ vector<int> Rational::getFraction(const string& input) {
     }
 
     return fraction;
-}
+}//end of string parsing method
 
+//normalizing method
 Rational Rational::reduceFraction(Rational &fraction) {
     int lesserNum;
     int gcd = 1;
@@ -80,7 +79,7 @@ Rational Rational::reduceFraction(Rational &fraction) {
         lesserNum = fraction.denominator;
     }
 
-    //checks all ints between 2 and the lesser of the numerator/denominator for greatest common divisor
+    //checks all ints between 2 and the smallest of the numerator/denominator for greatest common divisor
     for (int i = 2; i < lesserNum; i++) {
         if (fraction.numerator%i == 0 && fraction.denominator%i == 0) {
             gcd = i;
@@ -91,7 +90,7 @@ Rational Rational::reduceFraction(Rational &fraction) {
     fraction.denominator /= gcd;
 
     return fraction;
-}
+}//end of reduce method
 
 
 //----------math functions----------// >>returns a reduced rational number
@@ -104,7 +103,7 @@ Rational Rational::operator+(Rational &rn) const {
     //send to be reduced
     reduceFraction(answer);
 
-    if (answer.numerator > answer.denominator) {
+    if (answer.numerator > answer.denominator && answer.numerator%answer.denominator != 0) {
         cout << answer.numerator/answer.denominator << " " << answer.numerator%answer.denominator << "/"
         << answer.denominator << " or ";
     }
@@ -121,6 +120,11 @@ Rational Rational::operator-(Rational &rn) const {
     //send to be reduced
     reduceFraction(answer);
 
+    if (answer.numerator > answer.denominator && answer.numerator%answer.denominator != 0) {
+        cout << answer.numerator/answer.denominator << " " << answer.numerator%answer.denominator << "/"
+             << answer.denominator << " or ";
+    }
+
     return answer;
 }
 
@@ -132,6 +136,11 @@ Rational Rational::operator*(Rational &rn) const {
 
     //send to be reduced
     reduceFraction(answer);
+
+    if (answer.numerator > answer.denominator && answer.numerator%answer.denominator != 0) {
+        cout << answer.numerator/answer.denominator << " " << answer.numerator%answer.denominator << "/"
+             << answer.denominator << " or ";
+    }
 
     return answer;
 }
@@ -145,20 +154,46 @@ Rational Rational::operator/(Rational &rn) const {
     //send to be reduced
     reduceFraction(answer);
 
+    if (answer.numerator > answer.denominator && answer.numerator%answer.denominator != 0) {
+        cout << answer.numerator/answer.denominator << " " << answer.numerator%answer.denominator << "/"
+             << answer.denominator << " or ";
+    }
+
     return answer;
 }
 
 //----------comparison functions----------//
-bool Rational::operator>(Rational &rn) {
-    return false;
+bool Rational::operator>(Rational &rn) const {
+    double first = (double)this->numerator/(double)this->denominator;
+    double second = (double)rn.numerator/(double)rn.denominator;
+
+    if (first > second) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
-bool Rational::operator<(Rational &rn) {
-    return false;
+bool Rational::operator<(Rational &rn) const {
+    double first = (double)this->numerator/(double)this->denominator;
+    double second = (double)rn.numerator/(double)rn.denominator;
+
+    if (first < second) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
-bool Rational::operator==(Rational &rn) {
-    return false;
+bool Rational::operator==(Rational &rn) const {
+    double first = (double)this->numerator/(double)this->denominator;
+    double second = (double)rn.numerator/(double)rn.denominator;
+
+    if (first == second) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 
