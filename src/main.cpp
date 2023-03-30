@@ -12,8 +12,9 @@ int main() {
     bool loopProgram = true;
     bool  invalid = true;
     //number-fraction regex
+    //https://learn.microsoft.com/en-us/cpp/standard-library/regular-expressions-cpp?view=msvc-170
     //https://stackoverflow.com/a/19329838
-    regex validNum (R"(-?\d+([/]-?[1-9]+)*)");
+    regex validNum (R"(-?\d+(([/]-?[1-9])([0-9]?+))*)");//does not accept a zero denominator
 
     cout << "welcome to the rational number calculator" << endl;
 
@@ -47,9 +48,9 @@ int main() {
         Rational rn2(input);
 
         cout << "your inputted values were " << rn1 << " & " << rn2 << endl;
+        cout << "\ndemonstrating math operations overloaded" << endl;
 
-        cout << "\nmath operations overloaded" << endl;
-
+        cout << rn1 << " + " << rn2 << " = " << endl << rn1 + rn2 << endl;
 
         //end of loop question
         cout << "\nwould you like to continue? [1]yes [3]no" << endl;

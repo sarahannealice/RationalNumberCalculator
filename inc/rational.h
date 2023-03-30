@@ -6,7 +6,7 @@
 #define RATIONALNUMBERCALCULATOR_RATIONAL_H
 
 #include <string>
-#include <sstream>
+#include <sstream>//used for stringstream parsing
 #include <iostream>
 #include <regex>
 
@@ -14,7 +14,7 @@ using namespace std;
 
 class Rational {
 
-private:
+public:
     int numerator;
     int denominator;
 
@@ -30,8 +30,9 @@ public:
 
     //string parser -- returning array instead of vector (takes less memory/more efficient)
     //https://www.tutorialspoint.com/difference-between-std-vector-and-std-array-in-cplusplus
-    static int * getFraction(const string& input);
-    Rational reduceFraction(Rational& fraction);
+    //although it takes less memory, for simplicity's sake I'm using a vector (having memory issues)
+    static vector<int> getFraction(const string& input);
+    static Rational reduceFraction(Rational& fraction);
 
     //overloaded math operators
     Rational operator+(Rational& rn) const;

@@ -34,10 +34,16 @@ Rational::Rational(int num, int denom) {
 //string constructor
 Rational::Rational(string number) {
     cout << "---string constructor called---" << endl;
-    int fraction[2];
+    vector<int> fraction;
 
-    if (true) {//check if string contains '/'
-        getFraction(number);
+    //to see if rational or not -- https://stackoverflow.com/a/43629706
+    if (number.find('/') != string::npos) {//check if string contains '/' (no substring found = npos)
+        //copying 2 arrays -- https://stackoverflow.com/a/16137997
+        fraction = getFraction(number);
+
+        numerator = fraction[0];
+        denominator = fraction[1];
+
     } else {
         numerator = stoi(number);
         denominator = 1;
@@ -50,26 +56,43 @@ Rational::~Rational() {
 }
 
 //string parsing method -- https://stackoverflow.com/a/46931770
-int *Rational::getFraction(const string& input) {
-    static int fraction[2];
+vector<int> Rational::getFraction(const string& input) {
+    vector<int> fraction;
     stringstream stream(input);
     char delimiter = '/';
     string token;
 
     while (getline(stream, token, delimiter)) {
-        for (int i = 0; i < sizeof(fraction); i++) {
-            fraction[i] = stoi(token);
-        }
+        fraction.push_back(stoi(token));
     }
 
     return fraction;
 }
 
 Rational Rational::reduceFraction(Rational &fraction) {
+    int lesserNum;
+    int gcd = 1;
 
+    //checks which number is smaller
+    if (fraction.numerator > fraction.denominator) {
+        lesserNum = fraction.numerator;
+    } else {
+        lesserNum = fraction.denominator;
+    }
 
-    return Rational();
+    //checks all ints between 2 and the lesser of the numerator/denominator for greatest common divisor
+    for (int i = 2; i < lesserNum; i++) {
+        if (fraction.numerator%i == 0 && fraction.denominator%i == 0) {
+            gcd = i;
+        }
+    }
+
+    fraction.numerator /= gcd;
+    fraction.denominator /= gcd;
+
+    return fraction;
 }
+
 
 //----------math functions----------// >>returns a reduced rational number
 Rational Rational::operator+(Rational &rn) const {
@@ -79,7 +102,12 @@ Rational Rational::operator+(Rational &rn) const {
     answer.denominator = this->denominator * rn.denominator;
 
     //send to be reduced
+    reduceFraction(answer);
 
+    if (answer.numerator > answer.denominator) {
+        cout << answer.numerator/answer.denominator << " " << answer.numerator%answer.denominator << "/"
+        << answer.denominator << " or ";
+    }
 
     return answer;
 }
@@ -137,12 +165,14 @@ bool Rational::operator==(Rational &rn) {
 //----------friend function----------//
 ostream &operator<<(ostream &stream, const Rational &rn) {
     if (rn.numerator == rn.denominator) {
-        cout << 1;
+        stream << 1;
     } else if (rn.numerator == 0) {
-        cout << 0;
+        stream << 0;
     } else if (rn.denominator == 1) {
-        cout << rn.numerator;
+        stream << rn.numerator;
     } else {
-        cout << rn.numerator << "/" << rn.denominator;
+        stream << rn.numerator << "/" << rn.denominator;
     }
+
+    return stream;
 }
