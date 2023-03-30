@@ -12,7 +12,7 @@ Rational::Rational() {
     cout << "---default constructor called---" << endl;
 
     numerator = 0;
-    denominator = 0;
+    denominator = 1;
 }
 
 //one arg constructor
@@ -60,6 +60,7 @@ vector<int> Rational::getFraction(const string& input) {
     char delimiter = '/';
     string token;
 
+    //splits a string using a delimiter and adds to vector accordingly
     while (getline(stream, token, delimiter)) {
         fraction.push_back(stoi(token));
     }
@@ -79,15 +80,32 @@ Rational Rational::reduceFraction(Rational &fraction) {
         lesserNum = fraction.denominator;
     }
 
-    //checks all ints between 2 and the smallest of the numerator/denominator for greatest common divisor
-    for (int i = 2; i < lesserNum; i++) {
+    //checks all ints between 2 and the smallest of the numerator/denominator (inclusively) for greatest common divisor
+    for (int i = 2; i <= lesserNum; i++) {
         if (fraction.numerator%i == 0 && fraction.denominator%i == 0) {
             gcd = i;
+            cout << "gcd is: " << gcd << endl;
         }
     }
 
+    //calculations using gcd
     fraction.numerator /= gcd;
     fraction.denominator /= gcd;
+
+    //if statement to account for negative whole numbers in fraction form
+    if ((fraction.numerator < 0 || fraction.denominator < 0) && !(fraction.numerator < 0 && fraction.denominator < 0)) {
+        if (fraction.numerator < 0) {
+            if ((fraction.numerator * -1) == fraction.denominator) {
+                fraction.numerator *= -1;
+                fraction.denominator = 1;
+            }
+        } else if (fraction.denominator < 0) {
+            if (fraction.numerator == (fraction.denominator * -1)) {
+                fraction.numerator = -1;
+                fraction.denominator = 1;
+            }
+        }
+    }
 
     return fraction;
 }//end of reduce method
@@ -103,9 +121,21 @@ Rational Rational::operator+(Rational &rn) const {
     //send to be reduced
     reduceFraction(answer);
 
+    //accounting for negative denominator
+    if (answer.denominator < 0) {
+        answer.numerator *= -1;
+        answer.denominator *= -1;
+    }
+
+    //if statement to normalize fraction if numerator is greater than denominator
     if (answer.numerator > answer.denominator && answer.numerator%answer.denominator != 0) {
-        cout << answer.numerator/answer.denominator << " " << answer.numerator%answer.denominator << "/"
-        << answer.denominator << " or ";
+        if (answer.numerator < 0) {
+            cout << answer.numerator / answer.denominator << " " << (answer.numerator % answer.denominator) * -1 << "/"
+                 << answer.denominator << " or ";
+        } else {
+            cout << answer.numerator / answer.denominator << " " << answer.numerator % answer.denominator << "/"
+                 << answer.denominator << " or ";
+        }
     }
 
     return answer;
@@ -120,9 +150,21 @@ Rational Rational::operator-(Rational &rn) const {
     //send to be reduced
     reduceFraction(answer);
 
+    //accounting for negative denominator
+    if (answer.denominator < 0) {
+        answer.numerator *= -1;
+        answer.denominator *= -1;
+    }
+
+    //if statement to normalize fraction if numerator is greater than denominator
     if (answer.numerator > answer.denominator && answer.numerator%answer.denominator != 0) {
-        cout << answer.numerator/answer.denominator << " " << answer.numerator%answer.denominator << "/"
-             << answer.denominator << " or ";
+        if (answer.numerator < 0) {
+            cout << answer.numerator / answer.denominator << " " << (answer.numerator % answer.denominator) * -1 << "/"
+                 << answer.denominator << " or ";
+        } else {
+            cout << answer.numerator / answer.denominator << " " << answer.numerator % answer.denominator << "/"
+                 << answer.denominator << " or ";
+        }
     }
 
     return answer;
@@ -137,9 +179,21 @@ Rational Rational::operator*(Rational &rn) const {
     //send to be reduced
     reduceFraction(answer);
 
+    //accounting for negative denominator
+    if (answer.denominator < 0) {
+        answer.numerator *= -1;
+        answer.denominator *= -1;
+    }
+
+    //if statement to normalize fraction if numerator is greater than denominator
     if (answer.numerator > answer.denominator && answer.numerator%answer.denominator != 0) {
-        cout << answer.numerator/answer.denominator << " " << answer.numerator%answer.denominator << "/"
-             << answer.denominator << " or ";
+        if (answer.numerator < 0) {
+            cout << answer.numerator / answer.denominator << " " << (answer.numerator % answer.denominator) * -1 << "/"
+                 << answer.denominator << " or ";
+        } else {
+            cout << answer.numerator / answer.denominator << " " << answer.numerator % answer.denominator << "/"
+                 << answer.denominator << " or ";
+        }
     }
 
     return answer;
@@ -154,9 +208,21 @@ Rational Rational::operator/(Rational &rn) const {
     //send to be reduced
     reduceFraction(answer);
 
+    //accounting for negative denominator
+    if (answer.denominator < 0) {
+        answer.numerator *= -1;
+        answer.denominator *= -1;
+    }
+
+    //if statement to normalize fraction if numerator is greater than denominator
     if (answer.numerator > answer.denominator && answer.numerator%answer.denominator != 0) {
-        cout << answer.numerator/answer.denominator << " " << answer.numerator%answer.denominator << "/"
-             << answer.denominator << " or ";
+        if (answer.numerator < 0) {
+            cout << (answer.numerator / answer.denominator)*-1 << " " << (answer.numerator % answer.denominator) * -1 << "/"
+                 << answer.denominator << " or ";
+        } else {
+            cout << answer.numerator / answer.denominator << " " << answer.numerator % answer.denominator << "/"
+                 << answer.denominator << " or ";
+        }
     }
 
     return answer;
@@ -164,6 +230,7 @@ Rational Rational::operator/(Rational &rn) const {
 
 //----------comparison functions----------//
 bool Rational::operator>(Rational &rn) const {
+    //convert to double to account for decimals
     double first = (double)this->numerator/(double)this->denominator;
     double second = (double)rn.numerator/(double)rn.denominator;
 
@@ -175,6 +242,7 @@ bool Rational::operator>(Rational &rn) const {
 }
 
 bool Rational::operator<(Rational &rn) const {
+    //convert to double to account for decimals
     double first = (double)this->numerator/(double)this->denominator;
     double second = (double)rn.numerator/(double)rn.denominator;
 
@@ -186,6 +254,7 @@ bool Rational::operator<(Rational &rn) const {
 }
 
 bool Rational::operator==(Rational &rn) const {
+    //convert to double to account for decimals
     double first = (double)this->numerator/(double)this->denominator;
     double second = (double)rn.numerator/(double)rn.denominator;
 
@@ -199,6 +268,7 @@ bool Rational::operator==(Rational &rn) const {
 
 //----------friend function----------//
 ostream &operator<<(ostream &stream, const Rational &rn) {
+    //if statement to check what to send to stream when using '<<' and Rational objects
     if (rn.numerator == rn.denominator) {
         stream << 1;
     } else if (rn.numerator == 0) {
