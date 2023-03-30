@@ -9,7 +9,8 @@ using namespace std;
 int main() {
     string input;
     string cont;
-    string temp;
+    int tempNum = 2;
+    int tempDen = 5;
     bool loopProgram = true;
     bool  invalid = true;
     //number-fraction regex
@@ -17,7 +18,7 @@ int main() {
     //https://stackoverflow.com/a/19329838
     regex validNum (R"(-?\d+(([/]-?[1-9])([0-9]?+))*)");//does not accept a zero denominator
 
-    cout << "welcome to the rational number calculator" << endl;
+    cout << "*• welcome to the rational number calculator •*" << endl;
 
     while (loopProgram) {
         //taking user input
@@ -50,7 +51,7 @@ int main() {
 
         cout << "your inputted values were " << rn1 << " & " << rn2 << endl;
         cout << "\n---------------------------------------------" << endl;
-        cout << "demonstrating math operations overloaded" << endl;
+        cout << "demonstrating math operation overloaded" << endl;
 
         cout << endl << rn1 << " + " << rn2 << " = " << endl << rn1 + rn2 << endl;
         cout << endl << rn1 << " - " << rn2 << " = " << endl << rn1 - rn2 << endl;
@@ -80,7 +81,18 @@ int main() {
         } else if ((rn1 == rn2) == 0) {
             cout << "false" << endl;
         }
-        cout << endl;
+
+        cout << "\n---------------------------------------------" << endl;
+        cout << "demonstrating additional constructors" << endl;
+        cout << "(the example arguments will be " << tempNum << " and " << tempDen << ")" << endl << endl;
+
+        Rational demo1(tempNum);
+        cout << "numerator: " << demo1.numerator << endl;
+        cout << "denominator: " << demo1.denominator << endl << endl;
+
+        Rational demo2(tempNum, tempDen);
+        cout << "numerator: " << demo2.numerator << endl;
+        cout << "denominator: " << demo2.denominator << endl << endl;
 
 
         //end of loop question
@@ -94,7 +106,8 @@ int main() {
             cout << "ending program\n";
             loopProgram = false;
         } else {
-            cout << "invalid input. assuming you'd like to continue\n" << endl;
+            cout << "invalid input. assuming you'd like to stop\n" << endl;
+            loopProgram = false;
         }
     }//end program loop
 

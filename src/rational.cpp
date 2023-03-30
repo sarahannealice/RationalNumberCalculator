@@ -84,7 +84,6 @@ Rational Rational::reduceFraction(Rational &fraction) {
     for (int i = 2; i <= lesserNum; i++) {
         if (fraction.numerator%i == 0 && fraction.denominator%i == 0) {
             gcd = i;
-            cout << "gcd is: " << gcd << endl;
         }
     }
 

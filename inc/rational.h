@@ -14,7 +14,8 @@ using namespace std;
 
 class Rational {
 
-private:
+//would normally be private
+public:
     int numerator;
     int denominator;
 
