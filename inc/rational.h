@@ -31,12 +31,21 @@ public:
     //string parser -- returning array instead of vector (takes less memory/more efficient)
     //https://www.tutorialspoint.com/difference-between-std-vector-and-std-array-in-cplusplus
     static int * getFraction(const string& input);
+    Rational reduceFraction(Rational& fraction);
 
     //overloaded math operators
+    Rational operator+(Rational& rn) const;
+    Rational operator-(Rational& rn) const;
+    Rational operator*(Rational& rn) const;
+    Rational operator/(Rational& rn) const;
 
+    //overloaded comparison operators
+    bool operator>(Rational& rn);
+    bool operator<(Rational& rn);
+    bool operator==(Rational& rn);
 
     //friend function
-    friend ostream& operator<< (ostream& stream, const Rational &rn);
+    friend ostream& operator<<(ostream& stream, const Rational &rn);
 };
 
 #endif //RATIONALNUMBERCALCULATOR_RATIONAL_H

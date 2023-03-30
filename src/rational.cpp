@@ -33,11 +33,15 @@ Rational::Rational(int num, int denom) {
 
 //string constructor
 Rational::Rational(string number) {
-cout << "---string constructor called---" << endl;
+    cout << "---string constructor called---" << endl;
+    int fraction[2];
 
-numerator = stoi(number);
-//to-do: split string into numerator and denominator
-denominator = 1;
+    if (true) {//check if string contains '/'
+        getFraction(number);
+    } else {
+        numerator = stoi(number);
+        denominator = 1;
+    }
 }
 
 //destructor
@@ -61,13 +65,76 @@ int *Rational::getFraction(const string& input) {
     return fraction;
 }
 
-//----------math functions----------//
+Rational Rational::reduceFraction(Rational &fraction) {
 
 
+    return Rational();
+}
+
+//----------math functions----------// >>returns a reduced rational number
+Rational Rational::operator+(Rational &rn) const {
+    Rational answer;
+
+    answer.numerator = (this->numerator * rn.denominator) + (this->denominator * rn.numerator);
+    answer.denominator = this->denominator * rn.denominator;
+
+    //send to be reduced
 
 
+    return answer;
+}
 
-//friend function
+Rational Rational::operator-(Rational &rn) const {
+    Rational answer;
+
+    answer.numerator = (this->numerator * rn.denominator) - (this->denominator * rn.numerator);
+    answer.denominator = this->denominator * rn.denominator;
+
+    //send to be reduced
+
+
+    return answer;
+}
+
+Rational Rational::operator*(Rational &rn) const {
+    Rational answer;
+
+    answer.numerator = this->numerator * rn.numerator;
+    answer.denominator = this->denominator * rn.denominator;
+
+    //send to be reduced
+
+
+    return answer;
+}
+
+Rational Rational::operator/(Rational &rn) const {
+    Rational answer;
+
+    answer.numerator = this->numerator * rn.denominator;
+    answer.denominator = this->denominator * rn.numerator;
+
+    //send to be reduced
+
+
+    return answer;
+}
+
+//----------comparison functions----------//
+bool Rational::operator>(Rational &rn) {
+    return false;
+}
+
+bool Rational::operator<(Rational &rn) {
+    return false;
+}
+
+bool Rational::operator==(Rational &rn) {
+    return false;
+}
+
+
+//----------friend function----------//
 ostream &operator<<(ostream &stream, const Rational &rn) {
     if (rn.numerator == rn.denominator) {
         cout << 1;

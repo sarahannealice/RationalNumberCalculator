@@ -48,7 +48,7 @@ int main() {
 
         cout << "your inputted values were " << rn1 << " & " << rn2 << endl;
 
-        cout << "\nmath operations overloaded demonstration" << endl;
+        cout << "\nmath operations overloaded" << endl;
 
 
         //end of loop question
